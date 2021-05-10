@@ -1,5 +1,6 @@
 package com.proj.co.testbench;
 
+import com.proj.co.benchmark.HDD.HDDSequentialWrite;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
