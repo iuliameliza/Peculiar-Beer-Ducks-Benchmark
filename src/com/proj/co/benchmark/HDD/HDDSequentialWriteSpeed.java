@@ -39,7 +39,7 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
     @Override
     public void warmup() {
         FileWriter fr = new FileWriter();
-        int myBufferSize = 1024 * 1024 * 6; //4 MB
+        int myBufferSize = 1024 * 1024 * 6; //6 MB
 
         try {
             fr.streamWriteFixedSize(PATH, fileExtension, 0, 6, myBufferSize, true);
@@ -57,7 +57,7 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
      */
     @Override
     public void run(Object... options) {
-        // reset the writeSpeed
+        // reset the result
         result = 0;
 
         FileWriter writer = new FileWriter();
@@ -68,10 +68,10 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
         Boolean clean = (Boolean) options[1];
 
         String prefix = PATH;
-        String suffix = ".dat";
+        String suffix = fileExtension;
         int startIndex = 0;
         int endIndex = filesToWrite;
-        int bufferSize = (int)fileSize/ 1024; // 4 KB
+        int bufferSize = (int)fileSize/ 1024;
 
         // Check that the option sent is valid, if not just put the "fs" option
         if(!(option.equals("fb") || option.equals("fs")))
@@ -89,16 +89,18 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
                         + options[0].toString() + " is undefined");
 
 
-            // get the result of the benchmark
+            // save the result of the benchmark
             result = writer.getBenchScore();
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
+    /**
+     * Clean all the files, including the folders, that were created for running the benchmark
+     */
     @Override
     public void clean() {
         // Here, the created folder has to be deleted
@@ -106,8 +108,6 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
         File dir = new File(temp_directory);
 
         // Call a recursive method to delete all the files in the directory
-        // I know that the folders should be empty, but it is not so bad to check
-        // and delete everything
         clean(dir);
         dir.delete();
     }
