@@ -22,11 +22,6 @@ public class HDDRandomReadSpeed implements IBenchmark{
     }
 
     @Override
-    public void cancel() {
-
-    }
-
-    @Override
     public String getResult() {
         return null;
     }

@@ -7,8 +7,6 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.Random;
 
 public class FileWriter {
@@ -18,7 +16,6 @@ public class FileWriter {
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 512; // MB
     private Timer timer = new Timer();
     private double benchScore;
-    File folderPath;
 
     /**
      * Writes files on disk using a variable write buffer and fixed file size.
@@ -35,10 +32,9 @@ public class FileWriter {
      *            - size of the benchmark file to be written in the disk
      * @throws IOException
      */
-    public String streamWriteFixedSize(String filePrefix, String fileSuffix,
+    public void streamWriteFixedSize(String filePrefix, String fileSuffix,
                                      int minIndex, int maxIndex, long fileSize, boolean clean)
             throws IOException {
-
         int currentBufferSize = MIN_BUFFER_SIZE;
         String fileName;
         int fileIndex = 0;
@@ -61,11 +57,6 @@ public class FileWriter {
         }
 
         benchScore /= (maxIndex - minIndex + 1);
-
-        if(folderPath.isDirectory())
-            folderPath.deleteOnExit();
-
-        return String.format("%.2f", benchScore);
     }
 
     /**
@@ -82,7 +73,7 @@ public class FileWriter {
      * @param bufferSize
      *            - size of the benchmark file to be written on the disk
      */
-    public String streamWriteFixedBuffer(String filePrefix, String fileSuffix,
+    public void streamWriteFixedBuffer(String filePrefix, String fileSuffix,
                                        int minIndex, int maxIndex, int bufferSize, boolean clean)
             throws IOException {
 
@@ -100,12 +91,6 @@ public class FileWriter {
         }
 
         benchScore /= (maxIndex - minIndex + 1);
-
-        if(folderPath.isDirectory())
-            folderPath.deleteOnExit();
-
-        return String.format("%.2f", benchScore);
-
     }
 
     /**
@@ -114,12 +99,12 @@ public class FileWriter {
      */
     private void writeWithBufferSize(String fileName, int myBufferSize, long fileSize, boolean clean)
             throws IOException {
-
         File folderPath = new File(fileName.substring(0, fileName.lastIndexOf(File.separator)));
 
         // create folder path to benchmark output
         if (!folderPath.isDirectory())
             folderPath.mkdirs();
+
 
         final FileOutputStream file = new FileOutputStream(fileName);
         // create stream writer with given buffer size
@@ -138,24 +123,26 @@ public class FileWriter {
             outputStream.write(buffer);
             i++;
         }
-        printStats(fileName, fileSize, myBufferSize);
+        updateStats(fileSize);
 
         outputStream.close();
         if(clean) {
-            new File(fileName).deleteOnExit();
+            new File(fileName).delete();
         }
     }
 
-    private void printStats(String fileName, long totalBytes, int myBufferSize) {
-        NumberFormat nf = new DecimalFormat("#.00");
+    private void updateStats(long totalBytes) {
         final long time = timer.stop();
         TimeUnit timeUnit = TimeUnit.Sec;
         double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
-        double megabytes = totalBytes / (1024.0 * 1024); //
+        double megabytes = totalBytes / (1024.0 * 1024);
         double rate = megabytes / seconds; // calculated from the previous two variables
 
-        System.out.println("Seconds = " + seconds + "   Megabytes = " + megabytes + "     rate = " + rate);
         // actual score is write speed (MB/s)
         benchScore += rate;
+    }
+
+    public double getBenchScore() {
+        return benchScore;
     }
 }

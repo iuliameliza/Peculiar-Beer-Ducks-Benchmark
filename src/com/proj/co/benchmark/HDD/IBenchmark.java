@@ -26,11 +26,6 @@ public interface IBenchmark {
     void clean();
 
     /**
-     * Useful when it is needed to cancel the execution of the program
-     */
-    void cancel();
-
-    /**
      * @return Returns a string with the result of the benchmark
      */
     String getResult();

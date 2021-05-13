@@ -1,6 +1,6 @@
 package com.proj.co.benchmark.HDD;
 
-public class HDDRandomWrite implements IBenchmark{
+public class HDDSequentialReadSpeed implements IBenchmark{
     @Override
     public void initialize(Object... params) {
 
@@ -18,11 +18,6 @@ public class HDDRandomWrite implements IBenchmark{
 
     @Override
     public void clean() {
-
-    }
-
-    @Override
-    public void cancel() {
 
     }
 
