@@ -11,12 +11,13 @@ import java.io.IOException;
 
 public class Main extends Application {
     private static Stage stg;
+    private FXMLLoader loader;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         stg= primaryStage;
         primaryStage.setResizable(false);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/primary.fxml"));
+        loader = new FXMLLoader(getClass().getResource("/primary.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Peculiar Beer Ducks");
         primaryStage.setScene(new Scene(root, 1000, 600));
@@ -26,10 +27,30 @@ public class Main extends Application {
 
     //method used in Controller files to change the window
     public void changeScene(String fxml, String title) throws IOException {
-        Parent pane= FXMLLoader.load(getClass().getResource(fxml));
+        loader= new FXMLLoader(getClass().getResource(fxml));
+        Parent pane= loader.load();
         stg.setTitle(title);
         stg.getIcons().add(new Image("/beer-duck.png"));
         stg.getScene().setRoot(pane);
+        stg.show();
+    }
+
+    //method used in Primary controller to change scene while sending data to Secondary Controller
+    public void changeScene(String fxml, String title, String label) throws IOException {
+        loader= new FXMLLoader(getClass().getResource(fxml));
+        Parent pane= loader.load();
+        stg.setTitle(title);
+        stg.getIcons().add(new Image("/beer-duck.png"));
+        stg.getScene().setRoot(pane);
+
+        SecondaryController controller2 = loader.getController();
+        controller2.setLabelText(label);
+
+        stg.show();
+    }
+
+    public void closeScene(String fxml) throws IOException{
+        stg.close();
     }
 
     public static void main(String[] args){
