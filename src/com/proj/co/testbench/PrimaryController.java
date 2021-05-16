@@ -17,6 +17,16 @@ public class PrimaryController implements Initializable {
 
     private String seqWrite, seqRead, RandWrite, randRead;
 
+    private static PrimaryController instance;
+
+    public PrimaryController(){
+        instance= this;
+    }
+
+    public static PrimaryController getInstance(){
+        return instance;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         selectPartition.getItems().removeAll(selectPartition.getItems());
@@ -55,8 +65,7 @@ public class PrimaryController implements Initializable {
         seqWrite = sequentialWrite.getResult();
 
         //change scene
-        Main m = new Main();
-        m.changeScene("/secondary.fxml", "Peculiar Beer Ducks", seqWrite);
+        Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");
     }
 
     public String getRandRead() {

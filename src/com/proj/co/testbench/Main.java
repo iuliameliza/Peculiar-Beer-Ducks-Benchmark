@@ -13,6 +13,16 @@ public class Main extends Application {
     private static Stage stg;
     private FXMLLoader loader;
 
+    private static Main instance;
+
+    public Main(){
+        instance= this;
+    }
+
+    public static Main getInstance(){
+        return instance;
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stg= primaryStage;
@@ -33,24 +43,6 @@ public class Main extends Application {
         stg.getIcons().add(new Image("/beer-duck.png"));
         stg.getScene().setRoot(pane);
         stg.show();
-    }
-
-    //method used in Primary controller to change scene while sending data to Secondary Controller
-    public void changeScene(String fxml, String title, String label) throws IOException {
-        loader= new FXMLLoader(getClass().getResource(fxml));
-        Parent pane= loader.load();
-        stg.setTitle(title);
-        stg.getIcons().add(new Image("/beer-duck.png"));
-        stg.getScene().setRoot(pane);
-
-        SecondaryController controller2 = loader.getController();
-        controller2.setLabelText(label);
-
-        stg.show();
-    }
-
-    public void closeScene(String fxml) throws IOException{
-        stg.close();
     }
 
     public static void main(String[] args){
