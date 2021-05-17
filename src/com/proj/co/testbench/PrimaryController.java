@@ -1,5 +1,6 @@
 package com.proj.co.testbench;
 
+import com.proj.co.benchmark.HDD.HDDSequentialReadSpeed;
 import com.proj.co.benchmark.HDD.HDDSequentialWriteSpeed;
 import com.proj.co.benchmark.HDD.IBenchmark;
 import javafx.fxml.FXML;
@@ -43,7 +44,7 @@ public class PrimaryController implements Initializable {
         selectPartition.getSelectionModel().selectFirst();
 
         selectSize.getItems().removeAll(selectSize.getItems());
-        selectSize.getItems().addAll("25 MB", "50 MB", "100 MB", "250 MB");
+        selectSize.getItems().addAll("16 MB", "25 MB", "50 MB", "100 MB", "250 MB");
         selectSize.getSelectionModel().selectFirst();
     }
 
@@ -60,9 +61,17 @@ public class PrimaryController implements Initializable {
         IBenchmark sequentialWrite = new HDDSequentialWriteSpeed();
         sequentialWrite.initialize(partition, size);
         sequentialWrite.warmup();
-        sequentialWrite.run("fs", true);
-        sequentialWrite.clean();
+        sequentialWrite.run("fs", false);
+        //sequentialWrite.clean();
         seqWrite = sequentialWrite.getResult();
+
+        //SEQUENTIAL WRITING SPEED
+        IBenchmark sequentialRead = new HDDSequentialReadSpeed();
+        sequentialRead.initialize(partition, size);
+        sequentialRead.warmup();
+        sequentialRead.run();
+        sequentialRead.clean();
+        seqRead= sequentialRead.getResult();
 
         //change scene
         Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");

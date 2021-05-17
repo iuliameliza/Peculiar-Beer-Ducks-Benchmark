@@ -22,6 +22,7 @@ public class SecondaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
+        seqRead.setText(PrimaryController.getInstance().getSeqRead());
     }
 
     public void handleBackButton() throws IOException{

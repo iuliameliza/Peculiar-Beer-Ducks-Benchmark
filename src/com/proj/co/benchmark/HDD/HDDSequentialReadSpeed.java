@@ -4,13 +4,13 @@ import com.proj.co.timing.TimeUnit;
 import com.proj.co.timing.Timer;
 
 import javax.swing.filechooser.FileSystemView;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 public class HDDSequentialReadSpeed implements IBenchmark{
     private String PATH;
@@ -23,7 +23,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
 
     @Override
     public void initialize(Object... params) {
-        fileSize = (Long) params[1] * (1024 * 1024);
+        fileSize = (Long) params[1] * (1024 * 1024); // MB
         filesRead = 0;
         String partition;
 
@@ -38,15 +38,13 @@ public class HDDSequentialReadSpeed implements IBenchmark{
         // read the path formatted according to the OS
         java.nio.file.Path osSpecificPath = java.nio.file.Paths.get(partition, "HDDBenchmark", "SEQ");
         PATH = osSpecificPath.toString();
-
-        System.out.println(PATH);
     }
 
     @Override
     public void warmup() {
         // In the warmup I read a maximum of 3 files
         try {
-            readFiles(10);
+            readFiles(3);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -67,7 +65,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     }
 
     public void readFiles(int maxNbFiles) throws IOException {
-        int myBufferSize = 1024; // 1 KB
+        int myBufferSize = 4*1024; // 1 KB
         File dir = new File(PATH);
 
         for(File file: Objects.requireNonNull(dir.listFiles())) {
@@ -75,16 +73,17 @@ public class HDDSequentialReadSpeed implements IBenchmark{
                 break;
             }
 
-            FileInputStream fis = null;
+            InputStream fis = null;
 
             // Try to open the file from the directory
             try {
-                fis = new FileInputStream(file);
+                fis = Files.newInputStream(Paths.get(file.getAbsolutePath()));
+                new FileInputStream(file);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
 
-            byte[] buff = new byte[myBufferSize];
+            byte[] buff = new byte[Math.toIntExact(myBufferSize)];
             long toRead = fileSize / myBufferSize;
 
             int i = 0;
@@ -99,15 +98,22 @@ public class HDDSequentialReadSpeed implements IBenchmark{
             }
 
             // update the score of the read HDD benchmark
-            updateStats(fileSize);
+            //updateStats(fileSize);
+            final long time = timer.stop();
+            TimeUnit timeUnit = TimeUnit.Sec;
+            double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
+            double megabytes = fileSize / (1024.0 * 1024);
+            double rate = megabytes / seconds; // calculated from the previous two variables
+
+            // actual score is write speed (MB/s)
+            readSpeed += rate;
 
             Objects.requireNonNull(fis).close();
 
-            myBufferSize *= 2;
+            //myBufferSize *= 2;
             filesRead++; // the numbers of files that were read increased
             maxNbFiles--;
         }
-
     }
 
     private void updateStats(long totalBytes) {
@@ -124,7 +130,8 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     @Override
     public void clean() {
         // Here, the created folder has to be deleted
-        String temp_directory = PATH.substring(0, PATH.length() - "/SEQ/write-".length());
+        String temp_directory = PATH.substring(0, PATH.length() - "/SEQ".length());
+
         File dir = new File(temp_directory);
 
         // Call a recursive method to delete all the files in the directory
@@ -147,7 +154,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     public String getResult() {
         NumberFormat nf = new DecimalFormat("#.00");
         result = readSpeed / filesRead;
+
         return nf.format(result) + "MB/S";
     }
-
 }
