@@ -23,6 +23,7 @@ public class SecondaryController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
         seqRead.setText(PrimaryController.getInstance().getSeqRead());
+        rndWrite.setText(PrimaryController.getInstance().getRandWrite());
     }
 
     public void handleBackButton() throws IOException{

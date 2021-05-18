@@ -1,6 +1,5 @@
 package com.proj.co.benchmark.HDD;
 
-import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -17,17 +16,9 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
 
     @Override
     public void initialize(Object... params) {
-        String partition;
+        String partition = (String) params[0];
         fileSize = (Long) params[1] * (1024 * 1024);
         filesToWrite = 10;
-
-        // For now, if I am in Linux, I will write to the home folder
-        // If I am in windows, I will write in either partition
-        if(System.getProperty("os.name").equals("Linux")) {
-            partition = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-        } else {
-            partition = (String) params[0];
-        }
 
         // write the path according to the operating system
         java.nio.file.Path osSpecificPath = java.nio.file.Paths.get(partition, "HDDBenchmark",
@@ -39,7 +30,7 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
     @Override
     public void warmup() {
         FileWriter fr = new FileWriter();
-        int myBufferSize = 1024 * 1024 * 6; //6 MB
+        int myBufferSize = 1024 * 1024 * 4; //4 MB
 
         try {
             fr.streamWriteFixedSize(PATH, fileExtension, 0, 6, myBufferSize, true);

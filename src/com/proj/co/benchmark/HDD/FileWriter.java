@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Random;
 
 public class FileWriter {
-    private static final int MIN_BUFFER_SIZE = 4*1024;; // KB
+    private static final int MIN_BUFFER_SIZE = 1024;; // KB
     private static final int MAX_BUFFER_SIZE = 1024 * 1024 * 32; // MB
     private static final int MIN_FILE_SIZE = 1024 * 1024; // MB
     private static final int MAX_FILE_SIZE = 1024 * 1024 * 512; // MB

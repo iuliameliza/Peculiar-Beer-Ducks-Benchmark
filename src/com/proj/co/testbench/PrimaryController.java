@@ -1,5 +1,6 @@
 package com.proj.co.testbench;
 
+import com.proj.co.benchmark.HDD.HDDRandomWriteSpeed;
 import com.proj.co.benchmark.HDD.HDDSequentialReadSpeed;
 import com.proj.co.benchmark.HDD.HDDSequentialWriteSpeed;
 import com.proj.co.benchmark.HDD.IBenchmark;
@@ -7,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 
+import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +18,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private ChoiceBox<String> selectPartition, selectSize;
 
-    private String seqWrite, seqRead, RandWrite, randRead;
+    private String seqWrite, seqRead, randWrite, randRead;
 
     private static PrimaryController instance;
 
@@ -37,6 +39,12 @@ public class PrimaryController implements Initializable {
         if (drives != null && drives.length > 0) {
             for (File aDrive : drives) {
                 partitionLetter= aDrive.toString().replace("\\", "");
+
+                if(System.getProperty("os.name").equals("Linux")) {
+                    partitionLetter = FileSystemView.getFileSystemView().getHomeDirectory().toString();
+                    aDrive = new File(partitionLetter);
+                }
+
                 if( aDrive.canWrite() )
                     selectPartition.getItems().add(partitionLetter);
             }
@@ -70,8 +78,16 @@ public class PrimaryController implements Initializable {
         sequentialRead.initialize(partition, size);
         sequentialRead.warmup();
         sequentialRead.run();
-        sequentialRead.clean();
+        //sequentialRead.clean();
         seqRead= sequentialRead.getResult();
+
+        //RANDOM WRITING SPEED
+        IBenchmark randomWrite = new HDDRandomWriteSpeed();
+        randomWrite.initialize(partition, size);
+        randomWrite.warmup();
+        randomWrite.run();
+        randomWrite.clean();
+        randWrite= randomWrite.getResult();
 
         //change scene
         Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");
@@ -82,7 +98,7 @@ public class PrimaryController implements Initializable {
     }
 
     public String getRandWrite() {
-        return RandWrite;
+        return randWrite;
     }
 
     public String getSeqRead() {

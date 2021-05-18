@@ -3,14 +3,12 @@ package com.proj.co.benchmark.HDD;
 import com.proj.co.timing.TimeUnit;
 import com.proj.co.timing.Timer;
 
-import javax.swing.filechooser.FileSystemView;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Objects;
-import java.util.ResourceBundle;
 
 public class HDDSequentialReadSpeed implements IBenchmark{
     private String PATH;
@@ -25,15 +23,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     public void initialize(Object... params) {
         fileSize = (Long) params[1] * (1024 * 1024); // MB
         filesRead = 0;
-        String partition;
-
-        // For now, if I am in Linux, I will write to the home folder
-        // If I am in windows, I will write in either partition
-        if(System.getProperty("os.name").equals("Linux")) {
-            partition = FileSystemView.getFileSystemView().getHomeDirectory().toString();
-        } else {
-            partition = (String) params[0];
-        }
+        String partition = (String) params[0];
 
         // read the path formatted according to the OS
         java.nio.file.Path osSpecificPath = java.nio.file.Paths.get(partition, "HDDBenchmark", "SEQ");
@@ -44,7 +34,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     public void warmup() {
         // In the warmup I read a maximum of 3 files
         try {
-            readFiles(3);
+            readFiles(2);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -65,7 +55,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     }
 
     public void readFiles(int maxNbFiles) throws IOException {
-        int myBufferSize = 4*1024; // 1 KB
+        int myBufferSize = 4 * 1024; // 4 KB
         File dir = new File(PATH);
 
         for(File file: Objects.requireNonNull(dir.listFiles())) {
@@ -78,7 +68,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
             // Try to open the file from the directory
             try {
                 fis = Files.newInputStream(Paths.get(file.getAbsolutePath()));
-                new FileInputStream(file);
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
             }
@@ -98,7 +87,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
             }
 
             // update the score of the read HDD benchmark
-            //updateStats(fileSize);
+
             final long time = timer.stop();
             TimeUnit timeUnit = TimeUnit.Sec;
             double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
@@ -110,21 +99,9 @@ public class HDDSequentialReadSpeed implements IBenchmark{
 
             Objects.requireNonNull(fis).close();
 
-            //myBufferSize *= 2;
             filesRead++; // the numbers of files that were read increased
             maxNbFiles--;
         }
-    }
-
-    private void updateStats(long totalBytes) {
-        final long time = timer.stop();
-        TimeUnit timeUnit = TimeUnit.Sec;
-        double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
-        double megabytes = totalBytes / (1024.0 * 1024);
-        double rate = megabytes / seconds; // calculated from the previous two variables
-
-        // actual score is write speed (MB/s)
-        readSpeed += rate;
     }
 
     @Override
