@@ -1,44 +1,43 @@
 package com.proj.co.timing;
 public class Timer implements ITimer {
-
-    private long elapsed = 0;
-    private long stored = 0;
-    private TimerState state;
-
-    public Timer() {
-        state = TimerState.Stopped;
-    }
+    private long totalTime;
+    private long elapsedTime;
 
     @Override
     public void start() {
-        stored = 0;
-        resume();
+        totalTime = 0;
+        elapsedTime = System.nanoTime();
     }
 
     @Override
     public long stop() {
-        if (state.equals(TimerState.Running)) {
-            elapsed = System.nanoTime() - elapsed;
-            state = TimerState.Stopped;
-            stored += elapsed;
+        // compute it first to ensure a bigger accuracy
+        long temp = (System.nanoTime() - elapsedTime) + totalTime;
 
-            return stored;
-        } else
-            return stored;
-    }
+        // if stop() is called twice or before starting, return zero
+        // this is achieved by making sure than elapsed time is zero
+        // on a second call of stop or on a first call of stop
+        if(elapsedTime == 0) {
+            return 0;
+        }
 
-    @Override
-    public long pause() {
-        elapsed = System.nanoTime() - elapsed;
-        state = TimerState.Paused;
-        stored += elapsed;
+        // set elapsed time to zero for safety
+        elapsedTime = 0;
 
-        return stored;
+        return temp;
     }
 
     @Override
     public void resume() {
-        state = TimerState.Running;
-        elapsed = System.nanoTime();
+        elapsedTime = System.nanoTime();
+    }
+
+    @Override
+    public long pause() {
+
+        long relativeTime = System.nanoTime() - elapsedTime;
+        // update totalTime
+        totalTime += relativeTime;
+        return relativeTime;
     }
 }

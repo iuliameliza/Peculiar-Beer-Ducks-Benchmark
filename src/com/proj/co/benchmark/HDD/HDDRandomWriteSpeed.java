@@ -37,8 +37,6 @@ public class HDDRandomWriteSpeed implements IBenchmark{
         File folderPath = new File(PATH.substring(0, PATH.lastIndexOf(File.separator)));
         tmpPath = PATH.substring(0, PATH.length() - "write-".length()) + "test.dat";
 
-        System.out.println(tmpPath);
-
         if (!folderPath.isDirectory())
             folderPath.mkdirs();
 
@@ -69,7 +67,7 @@ public class HDDRandomWriteSpeed implements IBenchmark{
 
     @Override
     public void warmup() {
-
+        // grab a Snickers
     }
 
     @Override

@@ -1,9 +1,6 @@
 package com.proj.co.testbench;
 
-import com.proj.co.benchmark.HDD.HDDRandomWriteSpeed;
-import com.proj.co.benchmark.HDD.HDDSequentialReadSpeed;
-import com.proj.co.benchmark.HDD.HDDSequentialWriteSpeed;
-import com.proj.co.benchmark.HDD.IBenchmark;
+import com.proj.co.benchmark.HDD.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -86,8 +83,16 @@ public class PrimaryController implements Initializable {
         randomWrite.initialize(partition, size);
         randomWrite.warmup();
         randomWrite.run();
-        randomWrite.clean();
+        // randomWrite.clean();
         randWrite= randomWrite.getResult();
+
+        //RANDOM READING SPEED
+        IBenchmark randomRead = new HDDRandomReadSpeed();
+        randomRead.initialize(partition, size);
+        randomRead.warmup();
+        randomRead.run();
+        randomRead.clean();
+        randRead= randomRead.getResult();
 
         //change scene
         Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");

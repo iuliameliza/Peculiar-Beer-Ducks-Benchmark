@@ -14,7 +14,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     private String PATH;
     private long fileSize;
     private int filesRead;
-    private final int filesToRead = 10;
     private double result;
     private double readSpeed;
     private Timer timer = new Timer();
@@ -32,12 +31,7 @@ public class HDDSequentialReadSpeed implements IBenchmark{
 
     @Override
     public void warmup() {
-        // In the warmup I read a maximum of 3 files
-        try {
-            readFiles(2);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // grab a Snickers
     }
 
     @Override
@@ -48,21 +42,17 @@ public class HDDSequentialReadSpeed implements IBenchmark{
         filesRead = 0;
 
         try {
-            readFiles(filesToRead);
+            readFiles();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void readFiles(int maxNbFiles) throws IOException {
-        int myBufferSize = 4 * 1024; // 4 KB
+    public void readFiles() throws IOException {
+        int myBufferSize = 1 * 1024; // 4 KB
         File dir = new File(PATH);
 
         for(File file: Objects.requireNonNull(dir.listFiles())) {
-            if(maxNbFiles == 0) {
-                break;
-            }
-
             InputStream fis = null;
 
             // Try to open the file from the directory
@@ -87,7 +77,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
             }
 
             // update the score of the read HDD benchmark
-
             final long time = timer.stop();
             TimeUnit timeUnit = TimeUnit.Sec;
             double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
@@ -100,7 +89,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
             Objects.requireNonNull(fis).close();
 
             filesRead++; // the numbers of files that were read increased
-            maxNbFiles--;
         }
     }
 

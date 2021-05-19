@@ -24,6 +24,7 @@ public class SecondaryController implements Initializable {
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
         seqRead.setText(PrimaryController.getInstance().getSeqRead());
         rndWrite.setText(PrimaryController.getInstance().getRandWrite());
+        rndRead.setText(PrimaryController.getInstance().getRandRead());
     }
 
     public void handleBackButton() throws IOException{
