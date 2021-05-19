@@ -23,6 +23,7 @@ public class Main extends Application {
         return instance;
     }
 
+
     @Override
     public void start(Stage primaryStage) throws Exception{
         stg= primaryStage;
