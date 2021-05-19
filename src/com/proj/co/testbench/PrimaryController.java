@@ -49,7 +49,7 @@ public class PrimaryController implements Initializable {
         selectPartition.getSelectionModel().selectFirst();
 
         selectSize.getItems().removeAll(selectSize.getItems());
-        selectSize.getItems().addAll("16 MB", "25 MB", "50 MB", "100 MB", "250 MB");
+        selectSize.getItems().addAll("1 MB", "2 MB", "4 MB", "8 MB", "16 MB", "32 MB", "64 MB", "128 MB", "256 MB");
         selectSize.getSelectionModel().selectFirst();
     }
 
