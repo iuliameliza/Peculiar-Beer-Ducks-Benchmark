@@ -1,5 +1,6 @@
 package com.proj.co.testbench;
 
+import com.proj.co.specs.SystemInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -34,11 +35,13 @@ public class SecondaryController implements Initializable {
         //setting the title (selected partition and File Size
         title.setText("Partition: " + PrimaryController.getInstance().getPartition() + "\nFile Size: " + PrimaryController.getInstance().getSize() + " MB");
 
+        SystemInformation si = new SystemInformation();
+
         //setting the computer information
-        type.setText("Laptop HP G6");
-        os.setText("Windows 10 Pro");
-        cpu.setText("Intel(R) core(TM) i7-8 CPU @ 2.60GHz");
-        ram.setText("16 GB");
+        type.setText(si.getCompModel());
+        os.setText(si.getOsType());
+        cpu.setText(si.getCpuType());
+        ram.setText(si.getRamTotalSize());
 
         //setting the table with the corresponding results
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
