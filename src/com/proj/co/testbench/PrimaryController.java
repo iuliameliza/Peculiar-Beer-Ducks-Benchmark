@@ -73,19 +73,19 @@ public class PrimaryController implements Initializable {
         selectSize.getSelectionModel().selectFirst();
 
         selectSeqW.getItems().removeAll();
-        selectSeqW.getItems().addAll("1 KiB", "2 KiB", "4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
+        selectSeqW.getItems().addAll("1 KB", "2 KB", "4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectSeqW.getSelectionModel().selectFirst();
 
         selectSeqR.getItems().removeAll();
-        selectSeqR.getItems().addAll("1 KiB", "2 KiB", "4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
+        selectSeqR.getItems().addAll("1 KB", "2 KB", "4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectSeqR.getSelectionModel().selectFirst();
 
         selectRndW.getItems().removeAll();
-        selectRndW.getItems().addAll("4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
+        selectRndW.getItems().addAll("4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectRndW.getSelectionModel().selectFirst();
 
         selectRndR.getItems().removeAll();
-        selectRndR.getItems().addAll("4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
+        selectRndR.getItems().addAll("4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectRndR.getSelectionModel().selectFirst();
 
         runButton.setOnMouseClicked(event -> {
