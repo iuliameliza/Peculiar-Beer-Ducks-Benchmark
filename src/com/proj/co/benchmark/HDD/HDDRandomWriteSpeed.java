@@ -16,12 +16,13 @@ public class HDDRandomWriteSpeed implements IBenchmark{
     private String fileExtension;
     private long fileSize;
     private final long filesToWrite = 10;
-    private final int bufferSize = 1024 * 4; // 4 KB
+    private int bufferSize;
     private int fileCounter;
     private double writeSpeed;
 
     @Override
     public void initialize(Object... params) {
+        bufferSize= (int) params[2] * 1024;
         String partition = (String) params[0];
         fileSize = (Long) params[1] * (1024 * 1024);  // MB
 

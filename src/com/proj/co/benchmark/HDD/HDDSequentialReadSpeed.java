@@ -16,10 +16,12 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     private int filesRead;
     private double result;
     private double readSpeed;
+    private int bufferSize;
     private Timer timer = new Timer();
 
     @Override
     public void initialize(Object... params) {
+        bufferSize= (int) params[2] * 1024;
         fileSize = (Long) params[1] * (1024 * 1024); // MB
         filesRead = 0;
         String partition = (String) params[0];
@@ -49,7 +51,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
     }
 
     public void readFiles() throws IOException {
-        int myBufferSize = 1 * 1024; // 4 KB
         File dir = new File(PATH);
 
         for(File file: Objects.requireNonNull(dir.listFiles())) {
@@ -62,8 +63,8 @@ public class HDDSequentialReadSpeed implements IBenchmark{
                 e.printStackTrace();
             }
 
-            byte[] buff = new byte[Math.toIntExact(myBufferSize)];
-            long toRead = fileSize / myBufferSize;
+            byte[] buff = new byte[Math.toIntExact(bufferSize)];
+            long toRead = fileSize / bufferSize;
 
             int i = 0;
 

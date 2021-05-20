@@ -19,6 +19,10 @@ public class PrimaryController implements Initializable {
     @FXML
     private ChoiceBox<String> selectPartition, selectSize;
     @FXML
+    private ChoiceBox<String> selectSeqW, selectSeqR;
+    @FXML
+    private ChoiceBox<String> selectRndW, selectRndR;
+    @FXML
     private Button runButton;
     @FXML
     private Label loading;
@@ -68,6 +72,22 @@ public class PrimaryController implements Initializable {
         selectSize.getItems().addAll("1 MB", "2 MB", "4 MB", "8 MB", "16 MB", "32 MB", "64 MB", "128 MB", "256 MB");
         selectSize.getSelectionModel().selectFirst();
 
+        selectSeqW.getItems().removeAll();
+        selectSeqW.getItems().addAll("1 kib", "2 kib", "4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectSeqW.getSelectionModel().selectFirst();
+
+        selectSeqR.getItems().removeAll();
+        selectSeqR.getItems().addAll("1 kib", "2 kib", "4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectSeqR.getSelectionModel().selectFirst();
+
+        selectRndW.getItems().removeAll();
+        selectRndW.getItems().addAll("4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectRndW.getSelectionModel().selectFirst();
+
+        selectRndR.getItems().removeAll();
+        selectRndR.getItems().addAll("4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectRndR.getSelectionModel().selectFirst();
+
         runButton.setOnMouseClicked(event -> {
             loading.setText("Loading... Please wait!");
             progress.setVisible(true);
@@ -104,10 +124,11 @@ public class PrimaryController implements Initializable {
     public void handleRunButton() {
         size = convertSizeToLong();
         partition = selectPartition.getValue();
+        System.out.println("aaaaaaaaaaa");
 
         //SEQUENTIAL WRITING SPEED
         IBenchmark sequentialWrite = new HDDSequentialWriteSpeed();
-        sequentialWrite.initialize(partition, size);
+        sequentialWrite.initialize(partition, size, selectSeqW.getValue());
         sequentialWrite.warmup();
         sequentialWrite.run("fs", false);
         //sequentialWrite.clean();
@@ -116,7 +137,7 @@ public class PrimaryController implements Initializable {
 
         //SEQUENTIAL READING SPEED
         IBenchmark sequentialRead = new HDDSequentialReadSpeed();
-        sequentialRead.initialize(partition, size);
+        sequentialRead.initialize(partition, size, selectSeqR.getValue());
         sequentialRead.warmup();
         sequentialRead.run();
         //sequentialRead.clean();
@@ -125,7 +146,7 @@ public class PrimaryController implements Initializable {
 
         //RANDOM WRITING SPEED
         IBenchmark randomWrite = new HDDRandomWriteSpeed();
-        randomWrite.initialize(partition, size);
+        randomWrite.initialize(partition, size, selectRndW.getValue());
         randomWrite.warmup();
         randomWrite.run();
         // randomWrite.clean();
@@ -134,7 +155,7 @@ public class PrimaryController implements Initializable {
 
         //RANDOM READING SPEED
         IBenchmark randomRead = new HDDRandomReadSpeed();
-        randomRead.initialize(partition, size);
+        randomRead.initialize(partition, size, selectRndR.getValue());
         randomRead.warmup();
         randomRead.run();
         randomRead.clean();
@@ -159,6 +180,7 @@ public class PrimaryController implements Initializable {
     }
 
     public String getPartition() {
+        //the Linux does not have a partition ending with ':' so we check to see what String we send
         if( partition.charAt(partition.length()-1) == ':' )
             return partition.substring(0, partition.length()-1);
         return partition;

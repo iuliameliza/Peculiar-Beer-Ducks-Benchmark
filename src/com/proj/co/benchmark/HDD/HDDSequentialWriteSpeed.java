@@ -13,9 +13,11 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
     private long fileSize;
     private int filesToWrite;
     private double result;
+    private int bufferSize;
 
     @Override
     public void initialize(Object... params) {
+        bufferSize= (int) params[2] * 1024;
         String partition = (String) params[0];
         fileSize = (Long) params[1] * (1024 * 1024);
         filesToWrite = 10;
@@ -62,7 +64,6 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
         String suffix = fileExtension;
         int startIndex = 0;
         int endIndex = filesToWrite;
-        int bufferSize = (int)fileSize/ 1024;
 
         // Check that the option sent is valid, if not just put the "fs" option
         if(!(option.equals("fb") || option.equals("fs")))
