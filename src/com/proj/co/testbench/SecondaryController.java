@@ -23,7 +23,7 @@ public class SecondaryController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        title.setText("Partition: " + PrimaryController.getInstance().getPartition() + "\nSize: " + PrimaryController.getInstance().getSize());
+        title.setText("Partition: " + PrimaryController.getInstance().getPartition() + "\nSize: " + PrimaryController.getInstance().getSize() + " MB");
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
         seqRead.setText(PrimaryController.getInstance().getSeqRead());
         rndWrite.setText(PrimaryController.getInstance().getRandWrite());

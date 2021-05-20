@@ -118,6 +118,6 @@ public class HDDSequentialWriteSpeed implements IBenchmark {
     @Override
     public String getResult() {
         NumberFormat nf = new DecimalFormat("#.00");
-        return nf.format(result) + "MB/S";
+        return nf.format(result) + " MB/S";
     }
 }

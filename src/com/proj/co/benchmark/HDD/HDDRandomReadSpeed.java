@@ -128,6 +128,6 @@ public class HDDRandomReadSpeed implements IBenchmark{
         NumberFormat nf = new DecimalFormat("#.00");
         double result = readSpeed / fileCounter;
 
-        return nf.format(result) + "MB/S";
+        return nf.format(result) + " MB/S";
     }
 }

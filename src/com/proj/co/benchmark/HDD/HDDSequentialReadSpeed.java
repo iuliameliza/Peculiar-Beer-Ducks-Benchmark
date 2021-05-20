@@ -121,6 +121,6 @@ public class HDDSequentialReadSpeed implements IBenchmark{
         NumberFormat nf = new DecimalFormat("#.00");
         result = readSpeed / filesRead;
 
-        return nf.format(result) + "MB/S";
+        return nf.format(result) + " MB/S";
     }
 }

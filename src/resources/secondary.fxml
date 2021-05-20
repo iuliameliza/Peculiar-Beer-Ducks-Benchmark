@@ -24,7 +24,7 @@
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="seqWrite" alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="202.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4;">
+            <Label fx:id="seqWrite" alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="202.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4; -fx-font-size: 20; -fx-font-family: &quot;Goudy Old Style&quot;;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Goudy Old Style" size="22.0" />
                </font>
@@ -34,17 +34,17 @@
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Label>
-            <Label fx:id="rndWrite" alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="273.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4;">
+            <Label fx:id="rndWrite" alignment="CENTER" contentDisplay="CENTER" layoutX="173.0" layoutY="273.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4; -fx-font-size: 20; -fx-font-family: &quot;Goudy Old Style&quot;;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Goudy Old Style" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="rndRead" alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="273.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4;">
+            <Label fx:id="rndRead" alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="273.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4; -fx-font-size: 20; -fx-font-family: &quot;Goudy Old Style&quot;;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Goudy Old Style" size="22.0" />
                </font>
             </Label>
-            <Label fx:id="seqRead" alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="202.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4;">
+            <Label fx:id="seqRead" alignment="CENTER" contentDisplay="CENTER" layoutX="319.0" layoutY="202.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4; -fx-font-size: 20; -fx-font-family: &quot;Goudy Old Style&quot;;">
                <font>
                   <Font name="Goudy Old Style" size="22.0" />
                </font>

@@ -127,6 +127,6 @@ public class HDDRandomWriteSpeed implements IBenchmark{
         NumberFormat nf = new DecimalFormat("#.00");
         double result = writeSpeed / filesToWrite;
 
-        return nf.format(result) + "MB/S";
+        return nf.format(result) + " MB/S";
     }
 }
