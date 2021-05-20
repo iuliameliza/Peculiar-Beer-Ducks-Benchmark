@@ -73,19 +73,19 @@ public class PrimaryController implements Initializable {
         selectSize.getSelectionModel().selectFirst();
 
         selectSeqW.getItems().removeAll();
-        selectSeqW.getItems().addAll("1 kib", "2 kib", "4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectSeqW.getItems().addAll("1 KiB", "2 KiB", "4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
         selectSeqW.getSelectionModel().selectFirst();
 
         selectSeqR.getItems().removeAll();
-        selectSeqR.getItems().addAll("1 kib", "2 kib", "4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectSeqR.getItems().addAll("1 KiB", "2 KiB", "4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
         selectSeqR.getSelectionModel().selectFirst();
 
         selectRndW.getItems().removeAll();
-        selectRndW.getItems().addAll("4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectRndW.getItems().addAll("4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
         selectRndW.getSelectionModel().selectFirst();
 
         selectRndR.getItems().removeAll();
-        selectRndR.getItems().addAll("4 kib", "8 kib", "16 kib", "32 kib", "64 kib", "128 kib", "256 kib", "512 kib");
+        selectRndR.getItems().addAll("4 KiB", "8 KiB", "16 KiB", "32 KiB", "64 KiB", "128 KiB", "256 KiB", "512 KiB");
         selectRndR.getSelectionModel().selectFirst();
 
         runButton.setOnMouseClicked(event -> {
@@ -108,6 +108,11 @@ public class PrimaryController implements Initializable {
         });
     }
 
+    private int stringToInt(String text){
+        String[] arrayOfStrings= text.split(" ");
+        return Integer.parseInt(arrayOfStrings[0]);
+    }
+
     private void changeTheScene() {
         try {
             Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");
@@ -124,11 +129,10 @@ public class PrimaryController implements Initializable {
     public void handleRunButton() {
         size = convertSizeToLong();
         partition = selectPartition.getValue();
-        System.out.println("aaaaaaaaaaa");
 
         //SEQUENTIAL WRITING SPEED
         IBenchmark sequentialWrite = new HDDSequentialWriteSpeed();
-        sequentialWrite.initialize(partition, size, selectSeqW.getValue());
+        sequentialWrite.initialize(partition, size, stringToInt(selectSeqW.getValue()));
         sequentialWrite.warmup();
         sequentialWrite.run("fs", false);
         //sequentialWrite.clean();
@@ -137,7 +141,7 @@ public class PrimaryController implements Initializable {
 
         //SEQUENTIAL READING SPEED
         IBenchmark sequentialRead = new HDDSequentialReadSpeed();
-        sequentialRead.initialize(partition, size, selectSeqR.getValue());
+        sequentialRead.initialize(partition, size, stringToInt(selectSeqR.getValue()));
         sequentialRead.warmup();
         sequentialRead.run();
         //sequentialRead.clean();
@@ -146,7 +150,7 @@ public class PrimaryController implements Initializable {
 
         //RANDOM WRITING SPEED
         IBenchmark randomWrite = new HDDRandomWriteSpeed();
-        randomWrite.initialize(partition, size, selectRndW.getValue());
+        randomWrite.initialize(partition, size, stringToInt(selectRndW.getValue()));
         randomWrite.warmup();
         randomWrite.run();
         // randomWrite.clean();
@@ -155,7 +159,7 @@ public class PrimaryController implements Initializable {
 
         //RANDOM READING SPEED
         IBenchmark randomRead = new HDDRandomReadSpeed();
-        randomRead.initialize(partition, size, selectRndR.getValue());
+        randomRead.initialize(partition, size, stringToInt(selectRndR.getValue()));
         randomRead.warmup();
         randomRead.run();
         randomRead.clean();
