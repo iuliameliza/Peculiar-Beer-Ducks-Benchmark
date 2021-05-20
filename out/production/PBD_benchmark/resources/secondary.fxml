@@ -54,12 +54,12 @@
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Label>
-            <Button layoutX="190.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="66.0" prefWidth="116.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" text="Back">
+            <Button layoutX="190.0" layoutY="415.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="66.0" prefWidth="116.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px; -fx-font-size: 30; -fx-font-family: &quot;Goudy Old Style&quot;;" text="Back">
                <font>
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Button>
-            <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="14.0" prefHeight="99.0" prefWidth="310.0" textAlignment="CENTER" wrapText="true">
+            <Label fx:id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="9.0" prefHeight="120.0" prefWidth="310.0" style="-fx-font-size: 30; -fx-font-family: &quot;Goudy Old Style&quot;;" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font name="Goudy Old Style" size="30.0" />
                </font>
