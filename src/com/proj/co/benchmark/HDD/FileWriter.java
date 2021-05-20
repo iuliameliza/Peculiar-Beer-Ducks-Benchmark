@@ -123,23 +123,20 @@ public class FileWriter {
             outputStream.write(buffer);
             i++;
         }
-        updateStats(fileSize);
+
+        final long time = timer.stop();
+        TimeUnit timeUnit = TimeUnit.Sec;
+        double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
+        double megabytes = fileSize/ (1024.0 * 1024);
+        double rate = megabytes / seconds; // calculated from the previous two variables
+
+        // actual score is write speed (MB/s)
+        benchScore += rate;
 
         outputStream.close();
         if(clean) {
             new File(fileName).delete();
         }
-    }
-
-    private void updateStats(long totalBytes) {
-        final long time = timer.stop();
-        TimeUnit timeUnit = TimeUnit.Sec;
-        double seconds = TimeUnit.toTimeUnit(time, timeUnit); // calculated from timer's 'time'
-        double megabytes = totalBytes / (1024.0 * 1024);
-        double rate = megabytes / seconds; // calculated from the previous two variables
-
-        // actual score is write speed (MB/s)
-        benchScore += rate;
     }
 
     public double getBenchScore() {
