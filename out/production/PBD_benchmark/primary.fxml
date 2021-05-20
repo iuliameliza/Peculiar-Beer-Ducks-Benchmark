@@ -25,23 +25,23 @@
                   <Font name="Goudy Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25;" text="Seq Write">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Write">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25;" text="Seq Read">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Read">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
             <ChoiceBox fx:id="selectSeqR" layoutX="113.0" layoutY="243.0" prefHeight="42.0" prefWidth="67.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25;" text="Rnd Write">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Write">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25;" text="Rnd Read">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Read">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
