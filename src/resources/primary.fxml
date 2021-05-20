@@ -10,50 +10,50 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="style" stylesheets="@style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proj.co.testbench.PrimaryController">
    <children>
-      <AnchorPane layoutX="89.0" layoutY="107.0" prefHeight="386.0" prefWidth="377.0">
+      <AnchorPane layoutX="48.0" layoutY="50.0" prefHeight="501.0" prefWidth="481.0" style="-fx-background-color: white; -fx-background-radius: 125;">
          <children>
-            <ChoiceBox fx:id="selectPartition" layoutX="134.0" layoutY="35.0" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <Button fx:id="runButton" layoutX="133.0" layoutY="306.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="111.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px; -fx-font-size: 30; -fx-font-family: &quot;Goudy Old Style&quot;;" text="Run">
+            <ChoiceBox fx:id="selectPartition" layoutX="168.0" layoutY="56.0" prefHeight="42.0" prefWidth="145.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <Button fx:id="runButton" layoutX="158.0" layoutY="410.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="145.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px; -fx-font-size: 30; -fx-font-family: &quot;Goudy Old Style&quot;;" text="Run">
                <font>
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Button>
-            <ChoiceBox fx:id="selectSize" layoutX="134.0" layoutY="112.0" prefHeight="42.0" prefWidth="111.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <ChoiceBox fx:id="selectSeqW" layoutX="113.0" layoutY="195.0" prefHeight="42.0" prefWidth="67.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <Label alignment="CENTER" layoutY="162.0" prefHeight="31.0" prefWidth="377.0" text="Select Buffer Size" wrapText="true">
+            <ChoiceBox fx:id="selectSize" layoutX="168.0" layoutY="151.0" prefHeight="42.0" prefWidth="145.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <ChoiceBox fx:id="selectSeqW" layoutX="136.0" layoutY="264.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <Label alignment="CENTER" layoutY="203.0" prefHeight="42.0" prefWidth="481.0" text="Select Buffer Size" wrapText="true">
                <font>
                   <Font name="Goudy Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Write">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="264.0" prefHeight="42.0" prefWidth="111.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Write">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="18.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Read">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="334.0" prefHeight="42.0" prefWidth="111.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Seq Read">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="selectSeqR" layoutX="113.0" layoutY="243.0" prefHeight="42.0" prefWidth="67.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="195.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Write">
+            <ChoiceBox fx:id="selectSeqR" layoutX="136.0" layoutY="334.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="251.0" layoutY="264.0" prefHeight="42.0" prefWidth="111.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Write">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="243.0" prefHeight="42.0" prefWidth="89.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Read">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="251.0" layoutY="334.0" prefHeight="42.0" prefWidth="111.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 2; -fx-border-radius: 25; -fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 18;" text="Rnd Read">
                <font>
                   <Font name="Goudy Old Style" size="18.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="selectRndW" layoutX="286.0" layoutY="195.0" prefHeight="42.0" prefWidth="67.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <ChoiceBox fx:id="selectRndR" layoutX="286.0" layoutY="243.0" prefHeight="42.0" prefWidth="67.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
-            <Label alignment="CENTER" layoutX="2.0" layoutY="77.0" prefHeight="31.0" prefWidth="377.0" text="Select File Size" wrapText="true">
+            <ChoiceBox fx:id="selectRndW" layoutX="370.0" layoutY="264.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <ChoiceBox fx:id="selectRndR" layoutX="370.0" layoutY="334.0" prefHeight="42.0" prefWidth="94.0" style="-fx-background-color: #ffd4ae; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0); -fx-background-radius: 40px;" />
+            <Label alignment="CENTER" layoutY="109.0" prefHeight="42.0" prefWidth="481.0" text="Select File Size" wrapText="true">
                <font>
                   <Font name="Goudy Old Style Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="2.0" layoutY="-1.0" prefHeight="31.0" prefWidth="377.0" text="Select Partition" wrapText="true">
+            <Label alignment="CENTER" layoutY="14.0" prefHeight="42.0" prefWidth="481.0" text="Select Partition" wrapText="true">
                <font>
                   <Font name="Goudy Old Style Bold" size="25.0" />
                </font>
