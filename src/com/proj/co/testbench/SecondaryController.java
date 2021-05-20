@@ -33,8 +33,6 @@ public class SecondaryController implements Initializable {
     private Label ram;
     @FXML
     private Label cpu;
-    @FXML
-    private ImageView joben;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {

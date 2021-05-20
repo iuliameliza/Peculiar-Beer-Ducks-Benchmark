@@ -10,9 +10,8 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="1000.0" styleClass="style" stylesheets="@secondaryStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.proj.co.testbench.SecondaryController">
    <children>
-      <AnchorPane layoutX="26.0" layoutY="13.0" prefHeight="574.0" prefWidth="579.0" style="-fx-background-color: white; -fx-background-radius: 80;">
+      <AnchorPane layoutX="26.0" layoutY="13.0" prefHeight="574.0" prefWidth="579.0" style="-fx-background-color: white; -fx-background-radius: 70;">
          <children>
-            <Label layoutY="204.0" prefHeight="369.0" prefWidth="581.0" />
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="67.0" layoutY="241.0" prefHeight="75.0" prefWidth="150.0" style="-fx-border-color: #ffd4ae; -fx-border-width: 4;">
                <font>
                   <Font name="Goudy Old Style" size="35.0" />
@@ -63,76 +62,75 @@
                   <Font name="Goudy Old Style" size="35.0" />
                </font>
             </Button>
-            <Label alignment="CENTER_RIGHT" layoutX="67.0" layoutY="14.0" prefHeight="31.0" prefWidth="94.0" text="MODEL:" textAlignment="CENTER">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="14.0" prefHeight="31.0" prefWidth="94.0" text="MODEL:" textAlignment="CENTER">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="67.0" layoutY="45.0" prefHeight="31.0" prefWidth="94.0" text="OS:">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="45.0" prefHeight="31.0" prefWidth="94.0" text="OS:">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="67.0" layoutY="76.0" prefHeight="31.0" prefWidth="94.0" text="CPU:">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="76.0" prefHeight="31.0" prefWidth="94.0" text="CPU:">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="67.0" layoutY="107.0" prefHeight="31.0" prefWidth="94.0" text="RAM:">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="107.0" prefHeight="31.0" prefWidth="94.0" text="RAM:">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="ram" layoutX="196.0" layoutY="107.0" prefHeight="31.0" prefWidth="381.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="ram" layoutX="142.0" layoutY="107.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="type" layoutX="196.0" layoutY="14.0" prefHeight="31.0" prefWidth="349.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="type" layoutX="142.0" layoutY="14.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="os" layoutX="196.0" layoutY="45.0" prefHeight="31.0" prefWidth="381.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="os" layoutX="142.0" layoutY="45.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="cpu" layoutX="196.0" layoutY="76.0" prefHeight="31.0" prefWidth="381.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="cpu" layoutX="142.0" layoutY="76.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;" wrapText="true">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
             <Line endX="291.0" endY="-13.0" layoutX="288.0" layoutY="151.0" startX="-288.0" startY="-13.0" stroke="#ffd4ae" strokeWidth="4.0" />
-            <Line endX="-113.0" endY="40.0" layoutX="298.0" layoutY="161.0" startX="-113.0" startY="-161.0" stroke="#ffd4ae" strokeWidth="4.0" />
+            <Line endX="-162.0" endY="39.0" layoutX="298.0" layoutY="161.0" startX="-162.0" startY="-161.0" stroke="#ffd4ae" strokeWidth="4.0" />
             <Line endX="279.0" endY="41.0" layoutX="298.0" layoutY="161.0" startX="-298.0" startY="41.0" stroke="#ffd4ae" strokeWidth="4.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="11.0" layoutY="140.0" prefHeight="31.0" prefWidth="150.0" text="Partition:">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="140.0" prefHeight="31.0" prefWidth="94.0" text="Partition:">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label alignment="CENTER_RIGHT" layoutX="67.0" layoutY="171.0" prefHeight="31.0" prefWidth="94.0" text="File Size:">
+            <Label alignment="CENTER_RIGHT" layoutX="33.0" layoutY="171.0" prefHeight="31.0" prefWidth="94.0" text="File Size:">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="titlePartition" layoutX="196.0" layoutY="140.0" prefHeight="31.0" prefWidth="381.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="titlePartition" layoutX="142.0" layoutY="140.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="titleSize" layoutX="196.0" layoutY="171.0" prefHeight="31.0" prefWidth="381.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
+            <Label fx:id="titleSize" layoutX="142.0" layoutY="171.0" prefHeight="31.0" prefWidth="435.0" style="-fx-font-family: &quot;Goudy Old Style&quot;; -fx-font-size: 20;">
                <font>
                   <Font name="Goudy Old Style Bold" size="20.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fx:id="joben" fitHeight="151.0" fitWidth="138.0" layoutX="686.0" layoutY="73.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="151.0" fitWidth="138.0" layoutX="686.0" layoutY="73.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@joben.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="664.0" layoutY="42.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
