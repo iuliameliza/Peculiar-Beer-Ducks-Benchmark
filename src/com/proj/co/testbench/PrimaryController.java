@@ -20,6 +20,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLOutput;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class PrimaryController implements Initializable {
     @FXML
@@ -34,8 +36,6 @@ public class PrimaryController implements Initializable {
     private String seqWrite, seqRead, randWrite, randRead;
 
     private Thread t;
-
-    private boolean flag;
 
     private static PrimaryController instance;
 
@@ -74,33 +74,31 @@ public class PrimaryController implements Initializable {
         selectSize.getSelectionModel().selectFirst();
 
         runButton.setOnMouseClicked(event -> {
-            actionPerformed();
             loading.setText("Loading... Please wait!");
             progress.setVisible(true);
 
-            try {
-                t.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            Task runBenchTask = new Task<Void>() {
+                @Override
+                protected Void call() throws Exception {
+                    handleRunButton();
+                    return null;
+                }
+            };
 
-            try {
-                Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            runBenchTask.setOnSucceeded(evt -> {
+                changeTheScene();
+            });
 
+            new Thread(runBenchTask).start();
         });
     }
 
-    public void actionPerformed() {
-        t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                handleRunButton();
-            }
-        });
-        t.start();
+    private void changeTheScene() {
+        try {
+            Main.getInstance().changeScene("/secondary.fxml", "Peculiar Beer Ducks");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private long convertSizeToLong(){
@@ -147,9 +145,6 @@ public class PrimaryController implements Initializable {
         randomRead.clean();
         randRead= randomRead.getResult();
         System.out.println("rr");
-
-        flag= true;
-        //t.stop();
     }
 
     public String getRandRead() {
