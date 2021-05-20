@@ -18,9 +18,12 @@ public class SecondaryController implements Initializable {
     private Label rndWrite;
     @FXML
     private Label rndRead;
+    @FXML
+    private Label title;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        title.setText("Partition: " + PrimaryController.getInstance().getPartition() + "\nSize: " + PrimaryController.getInstance().getSize());
         seqWrite.setText(PrimaryController.getInstance().getSeqWrite());
         seqRead.setText(PrimaryController.getInstance().getSeqRead());
         rndWrite.setText(PrimaryController.getInstance().getRandWrite());

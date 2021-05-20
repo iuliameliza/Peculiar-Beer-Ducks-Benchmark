@@ -1,27 +1,19 @@
 package com.proj.co.testbench;
 
 import com.proj.co.benchmark.HDD.*;
-import javafx.application.Platform;
 import javafx.concurrent.Task;
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressIndicator;
 
 import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLOutput;
 import java.util.ResourceBundle;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class PrimaryController implements Initializable {
     @FXML
@@ -33,9 +25,12 @@ public class PrimaryController implements Initializable {
     @FXML
     private ProgressIndicator progress;
 
-    private String seqWrite, seqRead, randWrite, randRead;
-
-    private Thread t;
+    private String seqWrite;
+    private String seqRead;
+    private String randWrite;
+    private String randRead;
+    private String partition;
+    private Long size;
 
     private static PrimaryController instance;
 
@@ -107,8 +102,8 @@ public class PrimaryController implements Initializable {
     }
 
     public void handleRunButton() {
-        Long size = convertSizeToLong();
-        String partition = selectPartition.getValue();
+        size = convertSizeToLong();
+        partition = selectPartition.getValue();
 
         //SEQUENTIAL WRITING SPEED
         IBenchmark sequentialWrite = new HDDSequentialWriteSpeed();
@@ -161,6 +156,16 @@ public class PrimaryController implements Initializable {
 
     public String getSeqWrite() {
         return seqWrite;
+    }
+
+    public String getPartition() {
+        if( partition.charAt(partition.length()-1) == ':' )
+            return partition.substring(0, partition.length()-1);
+        return partition;
+    }
+
+    public Long getSize() {
+        return size;
     }
 
 }
