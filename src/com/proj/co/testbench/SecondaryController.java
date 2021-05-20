@@ -4,8 +4,6 @@ import com.proj.co.specs.SystemInformation;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
@@ -40,9 +38,8 @@ public class SecondaryController implements Initializable {
         titlePartition.setText(PrimaryController.getInstance().getPartition());
         titleSize.setText(PrimaryController.getInstance().getSize() + " MB");
 
-        SystemInformation si = new SystemInformation();
-
         //setting the computer information
+        SystemInformation si = new SystemInformation();
         type.setText(si.getCompModel());
         os.setText(si.getOsType());
         cpu.setText(si.getCpuType());

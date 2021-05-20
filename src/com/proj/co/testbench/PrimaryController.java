@@ -36,6 +36,7 @@ public class PrimaryController implements Initializable {
     private String partition;
     private Long size;
 
+    //using an instance of the PrimaryController to get information in Secondary Controller
     private static PrimaryController instance;
 
     public PrimaryController(){
@@ -49,6 +50,8 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         progress.setVisible(false);
+
+        //adding the partitions to Partition ChoiceBox
         selectPartition.getItems().removeAll(selectPartition.getItems());
 
         String partitionLetter;
@@ -68,41 +71,46 @@ public class PrimaryController implements Initializable {
         }
         selectPartition.getSelectionModel().selectFirst();
 
+        //adding sizes to the File Size ChoiceBox
         selectSize.getItems().removeAll(selectSize.getItems());
         selectSize.getItems().addAll("1 MB", "2 MB", "4 MB", "8 MB", "16 MB", "32 MB", "64 MB", "128 MB", "256 MB");
         selectSize.getSelectionModel().selectFirst();
 
+        //adding sizes to the BufferSize ChoiceBox
+        //Sequential Write
         selectSeqW.getItems().removeAll();
         selectSeqW.getItems().addAll("1 KB", "2 KB", "4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectSeqW.getSelectionModel().selectFirst();
 
+        //Sequential Read
         selectSeqR.getItems().removeAll();
         selectSeqR.getItems().addAll("1 KB", "2 KB", "4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectSeqR.getSelectionModel().selectFirst();
 
+        //Random Write
         selectRndW.getItems().removeAll();
         selectRndW.getItems().addAll("4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectRndW.getSelectionModel().selectFirst();
 
+        //Random Read
         selectRndR.getItems().removeAll();
         selectRndR.getItems().addAll("4 KB", "8 KB", "16 KB", "32 KB", "64 KB", "128 KB", "256 KB", "512 KB");
         selectRndR.getSelectionModel().selectFirst();
 
+        //handling the Run Button
         runButton.setOnMouseClicked(event -> {
             loading.setText("Loading... Please wait!");
             progress.setVisible(true);
 
-            Task runBenchTask = new Task<Void>() {
+            Task<Void> runBenchTask = new Task<Void>() {
                 @Override
-                protected Void call() throws Exception {
-                    handleRunButton();
+                protected Void call() {
+                    runBenchmark();
                     return null;
                 }
             };
 
-            runBenchTask.setOnSucceeded(evt -> {
-                changeTheScene();
-            });
+            runBenchTask.setOnSucceeded(evt -> changeTheScene());
 
             new Thread(runBenchTask).start();
         });
@@ -126,7 +134,7 @@ public class PrimaryController implements Initializable {
         return Long.parseLong(arrayOfStrings[0]);
     }
 
-    public void handleRunButton() {
+    public void runBenchmark() {
         size = convertSizeToLong();
         partition = selectPartition.getValue();
 
@@ -135,27 +143,21 @@ public class PrimaryController implements Initializable {
         sequentialWrite.initialize(partition, size, stringToInt(selectSeqW.getValue()));
         sequentialWrite.warmup();
         sequentialWrite.run("fs", false);
-        //sequentialWrite.clean();
         seqWrite = sequentialWrite.getResult();
-        System.out.println("sw");
 
         //SEQUENTIAL READING SPEED
         IBenchmark sequentialRead = new HDDSequentialReadSpeed();
         sequentialRead.initialize(partition, size, stringToInt(selectSeqR.getValue()));
         sequentialRead.warmup();
         sequentialRead.run();
-        //sequentialRead.clean();
         seqRead= sequentialRead.getResult();
-        System.out.println("sr");
 
         //RANDOM WRITING SPEED
         IBenchmark randomWrite = new HDDRandomWriteSpeed();
         randomWrite.initialize(partition, size, stringToInt(selectRndW.getValue()));
         randomWrite.warmup();
         randomWrite.run();
-        // randomWrite.clean();
         randWrite= randomWrite.getResult();
-        System.out.println("rw");
 
         //RANDOM READING SPEED
         IBenchmark randomRead = new HDDRandomReadSpeed();
@@ -164,7 +166,6 @@ public class PrimaryController implements Initializable {
         randomRead.run();
         randomRead.clean();
         randRead= randomRead.getResult();
-        System.out.println("rr");
     }
 
     public String getRandRead() {
