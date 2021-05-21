@@ -2,7 +2,7 @@
 This is a tool that benchmarks the hdd/ssd by measuring the write/read speed for sequential/random reading.
 
 ## Running the app
-There are some issues becuase of the old version of JavaFx that is used
+There are some issues becuase of the old version of JavaFx that is used. The following steps work both for Windows and for Linux.
 * steps:
   * install javafx (version 11 would be ok)
   * have a java version newer than 8
